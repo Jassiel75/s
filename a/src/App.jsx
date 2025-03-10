@@ -10,55 +10,74 @@ function App() {
   const [total, setTotal] = useState(0);
   const [primerValor, setPrimerValor] = useState(0);
   const [segundoValor, setSegundoValor] = useState(0);
-  const [operacion, setOperacion] = useState(false);
+  const [operacion, setOperacion] = useState("");
 
   const handleValor = (e) => {
-    if (!operacion) {
+    if (operacion === "") {
       setPrimerValor(Number(e.target.value));
     } else {
       setSegundoValor(Number(e.target.value));
     }
   };
 
-  const handleSumar = () => {
-    setOperacion(true);
+  const handleOperacion = (tipoOperacion) => {
+    setOperacion(tipoOperacion);
   };
 
   const handleIgual = () => {
-    setTotal(primerValor + segundoValor);
-    setOperacion(false);
+    switch (operacion) {
+      case "suma":
+        setTotal(primerValor + segundoValor);
+        break;
+      case "resta":
+        setTotal(primerValor - segundoValor);
+        break;
+      case "multiplicar":
+        setTotal(primerValor * segundoValor);
+        break;
+      case "dividir":
+        setTotal(primerValor / segundoValor);
+        break;
+      default:
+        break;
+    }
   };
 
   const handleReset = () => {
     setTotal(0);
     setPrimerValor(0);
     setSegundoValor(0);
-    setOperacion(false);
+    setOperacion("");
   };
 
   return (
     <div>
       <h1>operaciones basicas</h1>
-      <button onClick={handleValor} value={num1} name="num1">
+      <button onClick={handleValor} value={num1}>
         1
       </button>
-      <button onClick={handleValor} value={num2} name="num2">
+      <button onClick={handleValor} value={num2}>
         2
       </button>
-      <button onClick={handleValor} value={num3} name="num3">
+      <button onClick={handleValor} value={num3}>
         3
       </button>
-      <button onClick={handleValor} value={num4} name="num4">
+      <button onClick={handleValor} value={num4}>
         4
       </button>
-      <button onClick={handleValor} value={num5} name="num5">
+      <button onClick={handleValor} value={num5}>
         5
       </button>
-      <button onClick={handleSumar}>+</button>
+
+      <button onClick={() => handleOperacion("suma")}>+</button>
+      <button onClick={() => handleOperacion("resta")}>-</button>
+      <button onClick={() => handleOperacion("multiplicar")}>x</button>
+      <button onClick={() => handleOperacion("dividir")}>/</button>
+
       <button onClick={handleIgual}>igual</button>
       <button onClick={handleReset}>Reset</button>
       <p>{primerValor}</p>
-      <p>+</p>
+      <p>{operacion}</p>
       <p>{segundoValor}</p>
       <p>=</p>
       <p>{total}</p>
