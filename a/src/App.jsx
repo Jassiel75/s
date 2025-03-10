@@ -29,15 +29,6 @@ function App() {
       case "suma":
         setTotal(primerValor + segundoValor);
         break;
-      case "resta":
-        setTotal(primerValor - segundoValor);
-        break;
-      case "multiplicar":
-        setTotal(primerValor * segundoValor);
-        break;
-      case "dividir":
-        setTotal(primerValor / segundoValor);
-        break;
       default:
         break;
     }
@@ -70,9 +61,6 @@ function App() {
       </button>
 
       <button onClick={() => handleOperacion("suma")}>+</button>
-      <button onClick={() => handleOperacion("resta")}>-</button>
-      <button onClick={() => handleOperacion("multiplicar")}>x</button>
-      <button onClick={() => handleOperacion("dividir")}>/</button>
 
       <button onClick={handleIgual}>igual</button>
       <button onClick={handleReset}>Reset</button>
